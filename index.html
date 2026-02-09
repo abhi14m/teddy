@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teddy Day 🧸 - You're My Everything!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&family=Caveat:wght@600;700&family=Fredoka:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --teddy-brown: #8B4513;
+            --soft-pink: #FFB6C1;
+            --baby-pink: #FFC0CB;
+            --cream: #FFF5E1;
+            --rose: #FF69B4;
+            --light-brown: #D2691E;
+            --fluffy-white: #FFF8F0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFC0CB 50%, #FFB6C1 100%);
+            color: var(--teddy-brown);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating teddies background */
+        .teddy-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-teddy {
+            position: absolute;
+            font-size: 40px;
+            animation: floatTeddy 20s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes floatTeddy {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); }
+            50% { transform: translateY(-20vh) rotate(180deg); }
+        }
+
+        /* Welcome splash */
+        .welcome-splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFB6C1, #FF69B4, #FFB6C1);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .welcome-splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .big-teddy {
+            font-size: 12em;
+            animation: teddyBounce 2s infinite ease-in-out;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        @keyframes teddyBounce {
+            0%, 100% { transform: translateY(0) scale(1) rotate(-5deg); }
+            50% { transform: translateY(-50px) scale(1.15) rotate(5deg); }
+        }
+
+        .splash-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5em;
+            color: white;
+            margin: 30px 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: textFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes textFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .splash-subtitle {
+            font-size: 1.5em;
+            color: var(--fluffy-white);
+            margin-bottom: 40px;
+            font-family: 'Fredoka', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .enter-btn {
+            padding: 20px 60px;
+            font-size: 1.2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Fredoka', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .enter-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.6);
+        }
+
+        /* Main container */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .main-container.visible {
+            opacity: 1;
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-emoji {
+            font-size: 10em;
+            margin-bottom: 20px;
+            animation: teddyWiggle 3s infinite ease-in-out;
+            filter: drop-shadow(0 10px 20px rgba(255, 105, 180, 0.3));
+        }
+
+        @keyframes teddyWiggle {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .hero-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 5em;
+            color: var(--teddy-brown);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(255, 182, 193, 0.5);
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 4px 4px 8px rgba(255, 182, 193, 0.5); }
+            50% { text-shadow: 4px 4px 20px rgba(255, 105, 180, 0.8); }
+        }
+
+        .hero-text {
+            font-size: 1.8em;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--teddy-brown);
+        }
+
+        .hero-confession {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5em;
+            color: var(--rose);
+            margin-top: 20px;
+            animation: confessionPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes confessionPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Interactive Teddy Hug Section */
+        .teddy-hug-section {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4em;
+            text-align: center;
+            color: var(--teddy-brown);
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.5);
+        }
+
+        .hug-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hug-scene {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .teddy-character, .her-character {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+        }
+
+        .teddy-character img, .her-character img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(139, 69, 19, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .teddy-character:hover img {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.5);
+        }
+
+        .her-character:hover img {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.5);
+        }
+
+        .hug-scene.hugging .teddy-character {
+            transform: translateX(80px) rotate(-8deg);
+        }
+
+        .hug-scene.hugging .her-character {
+            transform: translateX(-80px) rotate(8deg);
+        }
+
+        .hug-button {
+            margin-top: 40px;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, var(--rose), #ff1493);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hug-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .hug-button:hover::after {
+            width: 400px;
+            height: 400px;
+        }
+
+        .hug-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        .hug-message {
+            text-align: center;
+            margin-top: 30px;
+            font-family: 'Caveat', cursive;
+            font-size: 2.5em;
+            color: var(--rose);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            filter: drop-shadow(0 5px 10px rgba(255, 105, 180, 0.3));
+        }
+
+        .hug-message.show {
+            opacity: 1;
+            animation: heartPulse 1s infinite;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Photo Gallery Carousel */
+        .carousel-section {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            animation: scroll 40s linear infinite;
+            width: fit-content;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            width: 350px;
+            height: 450px;
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(139, 69, 19, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-item:hover {
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 25px 70px rgba(255, 105, 180, 0.5);
+            z-index: 10;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(139, 69, 19, 0.95), transparent);
+            color: white;
+            font-family: 'Caveat', cursive;
+            font-size: 1.8em;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-item:hover .carousel-caption {
+            transform: translateY(0);
+        }
+
+        /* Interactive Teddy Dance */
+        .dance-section {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .dance-stage {
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 500px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.2);
+        }
+
+        .dance-stage::before {
+            content: '🎵';
+            position: absolute;
+            font-size: 10em;
+            opacity: 0.1;
+            animation: musicNote 3s infinite;
+        }
+
+        @keyframes musicNote {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(20deg); }
+        }
+
+        .dancers {
+            display: flex;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .dancer {
+            width: 200px;
+            height: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .dancer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(139, 69, 19, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dancers.dancing .dancer {
+            animation: dance 1s infinite;
+        }
+
+        @keyframes dance {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(-8deg); }
+            75% { transform: translateY(-30px) rotate(8deg); }
+        }
+
+        .dance-button {
+            margin-top: 40px;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, var(--rose), #ff1493);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dance-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .dance-button:hover::before {
+            left: 100%;
+        }
+
+        .dance-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Teddy Love Messages */
+        .messages-section {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 3px solid var(--soft-pink);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .message-card::before {
+            content: '🧸';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8em;
+            opacity: 0.08;
+            transition: all 0.5s ease;
+        }
+
+        .message-card:hover::before {
+            transform: rotate(360deg) scale(1.2);
+            opacity: 0.15;
+        }
+
+        .message-card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            border-color: var(--rose);
+            box-shadow: 0 25px 70px rgba(255, 105, 180, 0.4);
+        }
+
+        .message-image {
+            width: 100%;
+            height: 220px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .message-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .message-card:hover .message-image img {
+            transform: scale(1.15);
+        }
+
+        .message-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8em;
+            color: var(--teddy-brown);
+            margin-bottom: 15px;
+        }
+
+        .message-text {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: var(--teddy-brown);
+        }
+
+        /* Comparison Cards */
+        .comparison-section {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            border: 3px solid var(--soft-pink);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 182, 193, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .comparison-card:hover::before {
+            left: 100%;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--rose);
+            box-shadow: 0 25px 70px rgba(255, 105, 180, 0.4);
+        }
+
+        .card-emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+            display: block;
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+
+        @keyframes floatEmoji {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .card-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2em;
+            color: var(--teddy-brown);
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: var(--teddy-brown);
+        }
+
+        .winner-badge {
+            background: linear-gradient(135deg, var(--rose), #ff1493);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 1.1em;
+            animation: badgeShine 2s infinite;
+        }
+
+        @keyframes badgeShine {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 105, 180, 0.9); }
+        }
+
+        /* Fun Facts */
+        .fun-facts {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .facts-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .fact-item {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            padding: 30px 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--rose);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .fact-item:hover {
+            transform: translateX(15px);
+            border-left-width: 10px;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+        }
+
+        .fact-emoji {
+            font-size: 3em;
+            margin-right: 20px;
+            display: inline-block;
+            animation: rotate 3s infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .fact-text {
+            font-size: 1.3em;
+            display: inline;
+            line-height: 1.7;
+            color: var(--teddy-brown);
+        }
+
+        /* Final Message */
+        .final-message {
+            padding: 120px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .final-emoji {
+            font-size: 8em;
+            margin-bottom: 30px;
+            animation: finalHug 2s infinite;
+            filter: drop-shadow(0 10px 30px rgba(255, 105, 180, 0.3));
+        }
+
+        @keyframes finalHug {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .final-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4em;
+            color: var(--teddy-brown);
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.5);
+        }
+
+        .final-text {
+            font-size: 1.6em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            color: var(--teddy-brown);
+        }
+
+        .final-signature {
+            font-family: 'Caveat', cursive;
+            font-size: 3em;
+            color: var(--rose);
+            margin-top: 40px;
+            animation: signaturePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes signaturePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .date-badge {
+            font-size: 1.8em;
+            color: var(--teddy-brown);
+            margin-top: 20px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px 40px;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5em; }
+            .hero-emoji { font-size: 5em; }
+            .big-teddy { font-size: 6em; }
+            .splash-text { font-size: 2em; }
+            .splash-subtitle { font-size: 1em; padding: 0 20px; }
+            .enter-btn { padding: 15px 40px; font-size: 1em; }
+            .section-title { font-size: 2.2em; margin-bottom: 40px; }
+            .hero-text { font-size: 1.2em; }
+            .hero-confession { font-size: 1.5em; }
+
+            .hug-scene {
+                flex-direction: column;
+                height: auto;
+                gap: 20px;
+            }
+
+            .teddy-character, .her-character {
+                width: 220px;
+                height: 300px;
+            }
+
+            .hug-scene.hugging .teddy-character {
+                transform: translateY(-30px) rotate(-10deg);
+            }
+
+            .hug-scene.hugging .her-character {
+                transform: translateY(-30px) rotate(10deg);
+            }
+
+            .hug-button { font-size: 1.3em; padding: 18px 45px; }
+            .hug-message { font-size: 2em; }
+
+            .carousel-item {
+                width: 300px;
+                height: 380px;
+            }
+
+            .carousel-caption { font-size: 1.5em; padding: 25px; }
+
+            .dancers {
+                gap: 50px;
+                flex-direction: column;
+            }
+
+            .dancer {
+                width: 200px;
+                height: 250px;
+            }
+
+            .dance-button { font-size: 1.3em; padding: 18px 45px; }
+
+            .comparison-grid { grid-template-columns: 1fr; gap: 30px; }
+            .comparison-card { padding: 30px 20px; }
+            .card-emoji { font-size: 4em; }
+            .card-title { font-size: 1.5em; }
+            .card-text { font-size: 1.05em; }
+            .winner-badge { font-size: 1em; padding: 10px 25px; }
+
+            .message-image { height: 200px; }
+            .message-title { font-size: 1.6em; }
+            .message-text { font-size: 1.1em; }
+
+            .final-title { font-size: 2.2em; }
+            .final-text { font-size: 1.2em; }
+            .final-emoji { font-size: 6em; }
+            .final-signature { font-size: 2em; }
+            .date-badge { font-size: 1.3em; }
+            .final-message { padding: 80px 20px; }
+
+            .fact-emoji { font-size: 2.5em; margin-right: 15px; }
+            .fact-text { font-size: 1.05em; }
+            .fact-item { padding: 20px 25px; margin-bottom: 25px; }
+
+            .teddy-hug-section, .carousel-section, .dance-section,
+            .messages-section, .comparison-section, .fun-facts { padding: 80px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2em; }
+            .hero-emoji { font-size: 4.5em; }
+            .big-teddy { font-size: 5em; }
+            .splash-text { font-size: 1.8em; }
+            .section-title { font-size: 1.8em; }
+            .hero-text { font-size: 1em; }
+            .hero-confession { font-size: 1.3em; }
+
+            .teddy-character, .her-character {
+                width: 180px;
+                height: 260px;
+            }
+
+            .carousel-item {
+                width: 260px;
+                height: 340px;
+            }
+
+            .dancer {
+                width: 170px;
+                height: 220px;
+            }
+
+            .card-emoji { font-size: 3.5em; }
+            .card-title { font-size: 1.3em; }
+            .card-text { font-size: 0.95em; }
+
+            .final-text { font-size: 1em; }
+            .final-title { font-size: 1.8em; }
+            .fact-text { font-size: 0.95em; }
+        }
+
+        /* Additional animations */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-300px) scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--rose), #ff1493);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+            transition: all 0.3s ease;
+            animation: musicPulse 2s ease-in-out infinite;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.7);
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5); }
+            50% { box-shadow: 0 10px 40px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 105, 180, 0.5); }
+        }
+
+        .music-control.paused {
+            animation: none;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .music-control {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5em;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music Playlist -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_4a8f35cb64.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button class="music-control" id="musicControl" onclick="toggleMusic()" title="Toggle Music">
+        🎵
+    </button>
+
+    <!-- Floating teddies -->
+    <div class="teddy-bg" id="teddyBg"></div>
+
+    <!-- Welcome splash -->
+    <div class="welcome-splash" id="welcomeSplash">
+        <div class="big-teddy">🧸</div>
+        <h1 class="splash-text">Happy Teddy Day!</h1>
+        <p class="splash-subtitle">You're my favorite cuddle buddy! 💕</p>
+        <button class="enter-btn" onclick="enterSite()">Let's Cuddle! 🤗</button>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-container" id="mainContainer">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-emoji">🧸💖</div>
+            <h1 class="hero-title">Happy Teddy Day!</h1>
+            <p class="hero-text">
+                Teddies are cute, soft, and cuddly... <br>
+                But YOU? You're all that and SO MUCH MORE! 😍
+            </p>
+            <p class="hero-confession">
+                (Sorry teddies, she wins every time!)
+            </p>
+        </section>
+
+        <!-- Interactive Teddy Hug Section -->
+        <section class="teddy-hug-section">
+            <h2 class="section-title">Teddy + You = Perfect! 💕</h2>
+            <div class="hug-container">
+                <div class="hug-scene" id="hugScene">
+                    <div class="teddy-character">
+                        <img src="images/Screenshot 2026-02-10 at 12.39.29 AM.png" alt="Teddy Bear">
+                    </div>
+                    <div class="her-character">
+                        <img src="./images/Screenshot 2026-02-10 at 12.28.50 AM.png" alt="Her Beautiful Smile" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop'">
+                    </div>
+                </div>
+            </div>
+            <button class="hug-button" onclick="makeThemHug()">🤗 Make Them Hug!</button>
+            <div class="hug-message" id="hugMessage"></div>
+        </section>
+
+        <!-- Photo Carousel -->
+
+        <!-- Interactive Dance Section -->
+        <section class="dance-section">
+            <h2 class="section-title">Let's Dance Together! 💃🧸</h2>
+            <div class="dance-stage">
+                <div class="dancers" id="dancers">
+                    <div class="dancer">
+                        <img src="./images/Screenshot 2026-02-10 at 12.39.29 AM.png" alt="Dancing Teddy">
+                    </div>
+                    <div class="dancer">
+                        <img src="./images/Screenshot 2026-02-10 at 12.30.27 AM.png" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&h=500&fit=crop'" alt="Her Dancing">
+                    </div>
+                </div>
+                <button class="dance-button" onclick="startDance()">🎵 Start Dancing!</button>
+            </div>
+        </section>
+
+        <!-- Teddy Love Messages -->
+        <section class="messages-section">
+            <h2 class="section-title">Why I Love You! 💝</h2>
+            <div class="messages-grid">
+                <div class="message-card">
+                    <div class="message-image">
+                        <img src="./images/Screenshot 2026-02-10 at 12.28.50 AM.png" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=400&fit=crop'" alt="Your Smile">
+                    </div>
+                    <h3 class="message-title">Your Smile 😊</h3>
+                    <p class="message-text">
+                        Like a teddy bear's permanent smile, but way more beautiful and it actually makes my heart skip a beat! 💕
+                    </p>
+                </div>
+
+                <div class="message-card">
+                    <div class="message-image">
+                        <img src="./images/Screenshot 2026-02-10 at 12.32.12 AM.png" onerror="this.src='https://images.unsplash.com/photo-1521577352947-9bb58764b69a?w=600&h=400&fit=crop'" alt="Your Elegance">
+                    </div>
+                    <h3 class="message-title">Your Presence ✨</h3>
+                    <p class="message-text">
+                        Just like a favorite teddy brings comfort, you bring joy, peace, and happiness wherever you go! 🌟
+                    </p>
+                </div>
+
+                <div class="message-card">
+                    <div class="message-image">
+                        <img src="./images/Screenshot 2026-02-10 at 12.45.48 AM.png" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=600&h=400&fit=crop'" alt="Your Nature">
+                    </div>
+                    <h3 class="message-title">Your Hugs 🤗</h3>
+                    <p class="message-text">
+                        Softer than the fluffiest teddy, warmer than sunshine, and more comforting than anything in the world! 💖
+                    </p>
+                </div>
+
+                <div class="message-card">
+                    <div class="message-image">
+                        <img src="./images/Screenshot 2026-02-10 at 12.50.59 AM.png" alt="Teddy Love">
+                    </div>
+                    <h3 class="message-title">Your Cuteness 🥰</h3>
+                    <p class="message-text">
+                        Teddies are cute, but you? You're on a whole different level of adorable that should be illegal! 😍
+                    </p>
+                </div>
+
+
+                <div class="message-card">
+                    <div class="message-image">
+                        <img src="./images/Screenshot 2026-02-10 at 12.53.08 AM.png" onerror="this.src='https://images.unsplash.com/photo-1521577352947-9bb58764b69a?w=600&h=400&fit=crop'" alt="Everything">
+                    </div>
+                    <h3 class="message-title">Oopsie! 👑</h3>
+                    <p class="message-text">
+                        From your laugh to your quirks, everything about you is perfect. You're my favorite person ever! 💝
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison section -->
+        <section class="comparison-section">
+            <h2 class="section-title">Teddy vs You 🤔</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <span class="card-emoji">🧸</span>
+                    <h3 class="card-title">Teddy Bear</h3>
+                    <p class="card-text">
+                        Cute, cuddly, always there when you need a hug... 
+                        Pretty lovable, right?
+                    </p>
+                </div>
+
+                <div class="comparison-card">
+                    <span class="card-emoji">👑</span>
+                    <h3 class="card-title">You</h3>
+                    <p class="card-text">
+                        Cuter, more cuddly, always makes everything better, 
+                        gives hugs that actually mean something!
+                    </p>
+                    <span class="winner-badge">⭐ CLEAR WINNER ⭐</span>
+                </div>
+
+                <div class="comparison-card">
+                    <span class="card-emoji">🧸</span>
+                    <h3 class="card-title">Teddy's Smile</h3>
+                    <p class="card-text">
+                        Stitched-on smile, always happy, 
+                        never changes!
+                    </p>
+                </div>
+
+                <div class="comparison-card">
+                    <span class="card-emoji">😊</span>
+                    <h3 class="card-title">Your Smile</h3>
+                    <p class="card-text">
+                        Lights up the whole room, makes my day instantly better, 
+                        absolutely priceless!
+                    </p>
+                    <span class="winner-badge">💯 BREATHTAKING 💯</span>
+                </div>
+
+                <div class="comparison-card">
+                    <span class="card-emoji">🧸</span>
+                    <h3 class="card-title">Teddy's Comfort</h3>
+                    <p class="card-text">
+                        Soft, warm, great for hugging when feeling down!
+                    </p>
+                </div>
+
+                <div class="comparison-card">
+                    <span class="card-emoji">🤗</span>
+                    <h3 class="card-title">Your Comfort</h3>
+                    <p class="card-text">
+                        Warm hugs, kind words, makes everything okay, 
+                        my safe place!
+                    </p>
+                    <span class="winner-badge">🏆 IRREPLACEABLE 🏆</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fun facts -->
+        <section class="fun-facts">
+            <h2 class="section-title">Cuddle Facts! 🎉</h2>
+            <div class="facts-container">
+                <div class="fact-item">
+                    <span class="fact-emoji">🧸</span>
+                    <p class="fact-text">
+                        <strong>Teddy Fact:</strong> Teddy bears were named after President Theodore "Teddy" Roosevelt. <br>
+                        <strong>You Fact:</strong> You should be named "Perfect" because that's what you are! 😊
+                    </p>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-emoji">💝</span>
+                    <p class="fact-text">
+                        <strong>Teddy Fact:</strong> Hugging a teddy releases stress. <br>
+                        <strong>You Fact:</strong> Hugging YOU makes everything in life better! ❤️
+                    </p>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-emoji">🎁</span>
+                    <p class="fact-text">
+                        <strong>Teddy Fact:</strong> Teddy bears are symbols of love and comfort. <br>
+                        <strong>You Fact:</strong> You ARE love and comfort personified! 🥰
+                    </p>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-emoji">😴</span>
+                    <p class="fact-text">
+                        <strong>Teddy Fact:</strong> Many people sleep with teddy bears for comfort. <br>
+                        <strong>You Fact:</strong> I sleep better knowing you exist in this world! 😉
+                    </p>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-emoji">🌟</span>
+                    <p class="fact-text">
+                        <strong>Teddy Fact:</strong> The world's most expensive teddy cost $2.1 million. <br>
+                        <strong>You Fact:</strong> You're priceless! No amount of money could match your worth! 💎
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final message -->
+        <section class="final-message">
+            <div class="final-emoji">🧸💕</div>
+            <h2 class="final-title">The Cuddly Truth</h2>
+            <p class="final-text">
+                Teddies are cute and all... <br>
+                But honestly? I'd rather cuddle with you <br>
+                than the fluffiest teddy in the world! 💕
+            </p>
+            <p class="final-text">
+                You're my favorite person, my best friend, <br>
+                and the only cuddle buddy I'll ever need! <br>
+                (But I'll still get you teddies because you're worth it! 🧸)
+            </p>
+            <p class="final-signature">
+                Your Teddy-Loving (But You-Loving-More) Valentine 🧸💖
+            </p>
+            <p class="date-badge">Teddy Day 2026</p>
+        </section>
+    </div>
+
+    <script>
+        let hugCount = 0;
+        let isDancing = false;
+        let musicPlaying = false;
+        let currentTrack = 0;
+        const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
+
+        // Romantic music playlist from Pixabay (free to use)
+        const musicPlaylist = [
+            'https://cdn.pixabay.com/audio/2022/03/10/audio_4a8f35cb64.mp3', // Romantic Piano
+            'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3', // Cute Love
+            'https://cdn.pixabay.com/audio/2022/10/25/audio_1db3f9e7f6.mp3', // Sweet Love
+            'https://cdn.pixabay.com/audio/2023/02/28/audio_4cd05f7d57.mp3', // Romantic Background
+            'https://cdn.pixabay.com/audio/2022/03/23/audio_c610232532.mp3'  // Love Theme
+        ];
+
+        const hugMessages = [
+            "Awww! Perfect hug! 🤗💕",
+            "The best cuddle ever! 🥰",
+            "This is so sweet! 💖",
+            "They belong together! ✨",
+            "Cutest hug in the world! 😍",
+            "My heart is melting! 💓",
+            "More hugs please! 🧸💕",
+            "This never gets old! 🥺💖"
+        ];
+
+        // Load random track from playlist
+        function loadRandomTrack() {
+            currentTrack = Math.floor(Math.random() * musicPlaylist.length);
+            bgMusic.src = musicPlaylist[currentTrack];
+            bgMusic.load();
+        }
+
+        // Auto-advance to next random track when current ends
+        bgMusic.addEventListener('ended', function() {
+            loadRandomTrack();
+            if (musicPlaying) {
+                bgMusic.play();
+            }
+        });
+
+        // Music control function
+        function toggleMusic() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicControl.classList.add('paused');
+                musicControl.textContent = '🔇';
+                musicPlaying = false;
+            } else {
+                bgMusic.play().catch(e => {
+                    console.log('Audio play failed:', e);
+                    // Try loading a different track
+                    loadRandomTrack();
+                    bgMusic.play().catch(err => console.log('Still failed:', err));
+                });
+                musicControl.classList.remove('paused');
+                musicControl.textContent = '🎵';
+                musicPlaying = true;
+            }
+        }
+
+        // Set initial volume
+        bgMusic.volume = 0.5;
+
+        // Auto-play music when entering site
+        function enterSite() {
+            const splash = document.getElementById('welcomeSplash');
+            const main = document.getElementById('mainContainer');
+            
+            splash.classList.add('hidden');
+            
+            // Load random track and try to auto-play
+            setTimeout(() => {
+                loadRandomTrack();
+                bgMusic.play().then(() => {
+                    musicPlaying = true;
+                    musicControl.classList.remove('paused');
+                    musicControl.textContent = '🎵';
+                }).catch(e => {
+                    console.log('Auto-play prevented, user can click music button');
+                    musicControl.classList.add('paused');
+                    musicControl.textContent = '🔇';
+                });
+            }, 500);
+            
+            setTimeout(() => {
+                main.classList.add('visible');
+            }, 1000);
+        }
+
+        // Alternative: Start music on first user interaction
+        let musicStarted = false;
+        document.addEventListener('click', function startMusicOnInteraction() {
+            if (!musicStarted && !musicPlaying) {
+                if (!bgMusic.src || bgMusic.src === '') {
+                    loadRandomTrack();
+                }
+                bgMusic.play().then(() => {
+                    musicPlaying = true;
+                    musicControl.classList.remove('paused');
+                    musicControl.textContent = '🎵';
+                    musicStarted = true;
+                }).catch(e => {
+                    console.log('Could not start music:', e);
+                });
+            }
+        }, { once: false });
+
+        // Create floating teddies
+        function createFloatingTeddies() {
+            const bg = document.getElementById('teddyBg');
+            const teddies = ['🧸', '🐻', '💕', '💖', '✨', '🎀', '💝', '🌸'];
+            
+            for (let i = 0; i < 30; i++) {
+                const teddy = document.createElement('div');
+                teddy.className = 'floating-teddy';
+                teddy.textContent = teddies[Math.floor(Math.random() * teddies.length)];
+                teddy.style.left = Math.random() * 100 + '%';
+                teddy.style.top = Math.random() * 100 + '%';
+                teddy.style.animationDelay = Math.random() * 5 + 's';
+                teddy.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                bg.appendChild(teddy);
+            }
+        }
+
+        // Make them hug
+        function makeThemHug() {
+            const scene = document.getElementById('hugScene');
+            const message = document.getElementById('hugMessage');
+            
+            scene.classList.toggle('hugging');
+            
+            if (scene.classList.contains('hugging')) {
+                message.textContent = hugMessages[hugCount % hugMessages.length];
+                message.classList.add('show');
+                hugCount++;
+                createHearts();
+            } else {
+                message.classList.remove('show');
+            }
+        }
+
+        // Start dance
+        function startDance() {
+            const dancers = document.getElementById('dancers');
+            isDancing = !isDancing;
+            
+            if (isDancing) {
+                dancers.classList.add('dancing');
+                createMusicNotes();
+                // Continue creating music notes while dancing
+                const musicInterval = setInterval(() => {
+                    if (!isDancing) {
+                        clearInterval(musicInterval);
+                        return;
+                    }
+                    createMusicNotes();
+                }, 2000);
+            } else {
+                dancers.classList.remove('dancing');
+            }
+        }
+
+        // Create hearts
+        function createHearts() {
+            const hearts = ['💕', '💖', '💝', '💗', '💓', '💞'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = (Math.random() * 80 + 10) + '%';
+                    heart.style.top = '100%';
+                    heart.style.fontSize = (Math.random() * 20 + 30) + 'px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '10000';
+                    heart.style.animation = 'floatUp 3s ease-out forwards';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 100);
+            }
+        }
+
+        // Create music notes
+        function createMusicNotes() {
+            const notes = ['🎵', '🎶', '🎼', '🎤', '🎧'];
+            
+            for (let i = 0; i < 12; i++) {
+                const note = document.createElement('div');
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.position = 'fixed';
+                note.style.left = (Math.random() * 80 + 10) + '%';
+                note.style.top = (Math.random() * 80 + 10) + '%';
+                note.style.fontSize = (Math.random() * 15 + 30) + 'px';
+                note.style.pointerEvents = 'none';
+                note.style.zIndex = '10000';
+                note.style.animation = 'floatUp 2s ease-out forwards';
+                document.body.appendChild(note);
+                setTimeout(() => note.remove(), 2000);
+            }
+        }
+
+        // Click effects
+        document.addEventListener('click', (e) => {
+            if (Math.random() > 0.6) {
+                const effects = ['💕', '💖', '💝', '🧸', '✨', '⭐', '🎀', '🌸'];
+                const effect = document.createElement('div');
+                effect.textContent = effects[Math.floor(Math.random() * effects.length)];
+                effect.style.position = 'fixed';
+                effect.style.left = e.clientX + 'px';
+                effect.style.top = e.clientY + 'px';
+                effect.style.fontSize = '30px';
+                effect.style.pointerEvents = 'none';
+                effect.style.zIndex = '10000';
+                effect.style.animation = 'sparkle 1.5s ease-out forwards';
+                document.body.appendChild(effect);
+                setTimeout(() => effect.remove(), 1500);
+            }
+        });
+
+        // Initialize
+        createFloatingTeddies();
+
+        // Scroll animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply scroll animations to elements
+        document.querySelectorAll('.comparison-card, .fact-item, .message-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Carousel item animations
+        document.querySelectorAll('.carousel-item').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'scale(0.9)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            setTimeout(() => {
+                observer.observe(el);
+            }, index * 100);
+        });
+    </script>
+</body>
+</html>
